@@ -15,7 +15,7 @@ def insertion_sort(arr):
 array_to_sort = [9, 0, 4, 7, 8]
 print(insertion_sort(array_to_sort))
 
-#Rewrite the INSERTION-SORT procedure to sort into nonincreasing instead of nondecreasing order.
+#Rewrite the INSERTION-SORT procedure to sort into nonincreasing instead of nondecreasing order.
 def insertion_sort_right(arr):
     for j in range(1, len(arr)-1):
         key = arr[j]

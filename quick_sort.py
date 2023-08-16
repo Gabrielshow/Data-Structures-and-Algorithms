@@ -1,3 +1,4 @@
+import cProfile
 def quicksort(array):
     if len(array) < 2:
         return array
@@ -10,3 +11,6 @@ def quicksort(array):
         return quicksort(less) + [pivot] + quicksort(greater)
     
 print(quicksort([10, 8, 2, 3]))
+seq = [10, 8, 2, 3]
+if __name__ == "__main__":
+    cProfile.run('quicksort(seq)')

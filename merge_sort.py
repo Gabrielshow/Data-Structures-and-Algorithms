@@ -1,5 +1,6 @@
 #merge sort
 
+#bubble sort
 def sort(arr):
     for i in range(len(arr)):
         for j in range(1+i, len(arr)):
