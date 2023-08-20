@@ -1,4 +1,4 @@
-#Gnome sort
+#Gnome sort- it is a simplified version of the insertion sort
 def gnomesort(seq):
     i = 0
     while i < len(seq):
