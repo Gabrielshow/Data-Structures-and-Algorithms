@@ -1,4 +1,5 @@
 # insertion sort test
+# a rather simple version of insertion sort
 def ins_sort1(arr):
     i = 0
     while i < len(arr):
@@ -77,7 +78,7 @@ def ite_quick_sort(arr):
     greater = []
     pivot = arr[0]
     for i in range(1,len(arr)):
-        #if arr[i] == pivot: continue          # since we will start from the next element
+        #if arr[i] == pivot: continue          # since we will start from the next element this line has been commented out
         if arr[i] > pivot: greater.append(arr[i])
         else: less.append(arr[i])
     return less + [pivot] + greater
@@ -96,7 +97,7 @@ def bubble_sort(arr):
 print(bubble_sort(array_to_sort))
     
 # recursive version
-def rec_bubble_sort(arr, i=None, var=None):
+def rec_bubble_sort_infinite(arr, i=None, var=None):
     if i is None: i = 0
     limit = len(arr)
     var = limit_checker(i, limit)
@@ -116,5 +117,16 @@ def limit_checker(index, limit):
         return False
     else:
         return True
+
+def rec_bubble_sort(arr, i=0):
+    if i == len(arr) - 1:
+        return arr # Base case
+    
+    for j in range(0, len(arr)-i-1):
+        if arr[j] > arr[j+1] :
+            arr[j], arr[j+1] = arr[j+1], arr[j]
+
+    return rec_bubble_sort(arr, i + 1)
+
 
 print(rec_bubble_sort(array_to_sort))
