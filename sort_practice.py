@@ -96,20 +96,20 @@ def bubble_sort(arr):
 print(bubble_sort(array_to_sort))
     
 # recursive version
-def rec_bubble_sort_infinite(arr, i=None, var=None):
-    if i is None: i = 0
-    limit = len(arr)
-    var = limit_checker(i, limit)
-    rec_bubble_sort(arr, i+1, var)						# To fix RecursionError: maximum recursion depth exceeded in comparison
-    while var:
-        j = i
-        for j in range(i):
-            if j > 0 or arr[j-1] < arr[j]:
-                j += 1
-            else:
-                arr[j-1], arr[j] = arr[j] , arr[j-1]
-                j -= 1
-    return arr
+# def rec_bubble_sort_infinite(arr, i=None, var=None):
+#     if i is None: i = 0
+#     limit = len(arr)
+#     var = limit_checker(i, limit)
+#     rec_bubble_sort(arr, i+1, var)						# To fix RecursionError: maximum recursion depth exceeded in comparison
+#     while var:
+#         j = i
+#         for j in range(i):
+#             if j > 0 or arr[j-1] < arr[j]:
+#                 j += 1
+#             else:
+#                 arr[j-1], arr[j] = arr[j] , arr[j-1]
+#                 j -= 1
+#     return arr
 
 def limit_checker(index, limit):
     if index+1 > limit:

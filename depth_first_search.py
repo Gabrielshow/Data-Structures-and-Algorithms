@@ -132,4 +132,88 @@ class stack(list):
     
 print(list(traverse(N, 0, stack)))
 
+# depth-first Search with timestamps
+def dfs(G, s, d, f, S=None, t = 0):
+    if S in None: S = set()				# d discover time, f finish time
+    d[s] = t; t += 1
+    S.add(s)
+    for u in G[s]:
+        if u in S: continue
+        t = dfs(G, u, d, f, S, t)
+    f[s] = t; t += 1
+    return t
+# the parameters d and f should be mappings(dictionaries)
         
+# we could use dfs for topological sorting, if we perform dfs on a DAG, we could simply sort hte nodes based on their descending finish times,
+# and they'd be topologically sorted.
+def dfs_topsort(G):
+    S, res = set(), []
+    def recurse(u):
+        if u in S: return
+        S.add(u)
+        for v in G[u]:
+            recurse(v)
+        res.append(u)
+    for u in G:
+        recurse(u)
+    res.reverse()					# since it's all backward so far
+    return res
+
+# iterative Deepening Depth-first Search
+def iddfs(G, s):
+    yielded = set()
+    def recurse(G,s, d,S=None):
+        if s not in yielded:
+            yield s
+            yielded.add(s)
+        if d == 0: return
+        if S is None: S = set()
+        S.add(s)
+        for u in G[s]:
+            if u in S: continue
+            for v in recurse(G, u, d-1, S):
+                yield v
+    n = len(G)
+    for d in range(n):
+        if len(yielded) == n: break
+        for u in recurse(G, s, d):
+            yield u
+            
+# to implement later iddfs with timestamps
+            
+# Breadth-First Search
+def bfs(G,s):
+    P, Q = {s:None}, deque([s])
+    while Q:
+        u = Q.popleft()
+        for v in G[u]:
+            if v in P: continue
+            P[v] = u
+            Q.append(v)
+    return P
+
+# to extract a path to a node u, you can simply "walk backwards"
+# path = [u]
+# while P[u] is not None:
+#     path.append(P[u])
+#     u = P[u]
+# path.reverse()
+
+# Kosaraju's algorithm for finding strongly connected components
+def tr(G):
+    GT = {}
+    for u in G: GT[u] = set()
+    for u in G:
+        for v in G[u]:
+            GT[v].add(u)	# add all reverse edges
+    return GT
+def scc(G):
+    GT = tr(G)
+    sccs, seen = [], set()
+    for u in dfs_topsort(G):
+        if u in seen: continue
+        c = walk(GT, u, seen)
+        seen.update(c)
+        sccs.append(c)
+    return sccs
+
