@@ -71,7 +71,6 @@ def quick_sort(arr):
         less = [i for i in arr[1:] if i <= pivot]
         greater = [ i for i in arr[1:] if i > pivot]
         return quick_sort(less) + [pivot] + quick_sort(greater)
-    return arr
 
 def ite_quick_sort(arr):
     less = []
