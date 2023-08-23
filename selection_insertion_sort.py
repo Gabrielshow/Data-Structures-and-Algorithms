@@ -32,7 +32,7 @@ def sel_sort_rec(seq, i):
     
 
 # selection sort iterative version
-def sel_sort(seq, i):
+def sel_sort(seq):
     for i in range(len(seq)-1, 0, -1):
         max_j = i
         for j in range(i):
