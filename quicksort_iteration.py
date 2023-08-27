@@ -28,3 +28,5 @@ def partition(arr, left, right):
 
   arr[left] = pivot
   return left
+array = [9, 8, 6, 4, 3, 1]
+print(ite_quick_sort(array))

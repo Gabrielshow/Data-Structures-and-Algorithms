@@ -32,3 +32,4 @@ for d in denom:
 print(sum(payed))
 print(payed)
 
+
